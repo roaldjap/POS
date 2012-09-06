@@ -1,6 +1,5 @@
 POS::Application.routes.draw do
-  get "users/new"
-
+  
   resources :transactions, :customers, :products
 
 
