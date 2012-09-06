@@ -2,14 +2,16 @@
 
 <table>
   <tr>
+    <th>Customer</th>
+    <th>Product</th>
     <th>Transaction date</th>
-    <th></th>
-    <th></th>
     <th></th>
   </tr>
 
 <% @transactions.each do |transaction| %>
   <tr>
+    <td><%= transaction.customer_id %></td>
+    <td><%= transaction.product_id %></td>
     <td><%= transaction.transaction_date %></td>
     <td><%= link_to 'Show', transaction %></td>
     <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>

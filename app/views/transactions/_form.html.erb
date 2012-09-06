@@ -12,8 +12,12 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :customer_id %><br />
+    <%= f.select :customer_id,  Customer.all.collect { |c| [c.name, c.id] }, :prompt => 'Select a Customer'%><br />
+    <%= f.label :product_id %><br />
+    <%= f.select :product_id,  Product.all.collect { |c| [c.name, c.id] }, :prompt => 'Select a Product'%><br />
     <%= f.label :transaction_date %><br />
-    <%= f.text_field :transaction_date %>
+    <%= f.date_select :transaction_date, :start_year => 1950, :end_year => 2012 %>
   </div>
   <div class="actions">
     <%= f.submit %>

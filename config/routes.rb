@@ -1,9 +1,8 @@
 POS::Application.routes.draw do
-  resources :transactions
+  get "users/new"
 
-  resources :customers
+  resources :transactions, :customers, :products
 
-  resources :products
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

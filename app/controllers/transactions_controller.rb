@@ -26,6 +26,9 @@ class TransactionsController < ApplicationController
   def new
     @transaction = Transaction.new
 
+    @customer = Customer.new
+    @transaction.customer_id = @customer.id
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @transaction }
@@ -34,13 +37,19 @@ class TransactionsController < ApplicationController
 
   # GET /transactions/1/edit
   def edit
+
     @transaction = Transaction.find(params[:id])
   end
 
   # POST /transactions
   # POST /transactions.json
   def create
+    customer_id = params[:transaction].delete(:customer_id)
+    product_id = params[:transaction].delete(:product_id)
     @transaction = Transaction.new(params[:transaction])
+    @transaction.customer_id = customer_id
+    @transaction.product_id = product_id
+
 
     respond_to do |format|
       if @transaction.save
@@ -56,7 +65,11 @@ class TransactionsController < ApplicationController
   # PUT /transactions/1
   # PUT /transactions/1.json
   def update
+    customer_id = params[:transaction].delete(:customer_id)
+    product_id = params[:transaction].delete(:product_id)
     @transaction = Transaction.find(params[:id])
+    @transaction.customer_id = customer_id
+    @transaction.product_id = product_id
 
     respond_to do |format|
       if @transaction.update_attributes(params[:transaction])
