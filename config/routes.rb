@@ -1,5 +1,8 @@
 POS::Application.routes.draw do
   
+
+  devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' end
+  root :to => "transactions#index"
   resources :transactions, :customers, :products
 
 
