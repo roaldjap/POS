@@ -1,9 +1,10 @@
 class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
+  load_and_authorize_resource
   def index
     @products = Product.all
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @products }
@@ -14,7 +15,7 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @product = Product.find(params[:id])
-
+    authorize! :read, @products
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @product }

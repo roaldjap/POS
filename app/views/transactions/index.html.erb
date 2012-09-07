@@ -14,12 +14,16 @@
     <td><%= transaction.product_id %></td>
     <td><%= transaction.transaction_date %></td>
     <td><%= link_to 'Show', transaction %></td>
+<% if can? :update, @transaction %>    
     <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
     <td><%= link_to 'Destroy', transaction, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
+<% end %>  
 <% end %>
+
 </table>
 
 <br />
 
-<%= link_to 'New Transaction', new_transaction_path %>
+<%= link_to 'New Transaction', new_transaction_path %> |
+<%= link_to 'Back to Home', home_index_path %>

@@ -1,9 +1,9 @@
 class TransactionsController < ApplicationController
+  load_and_authorize_resource
   # GET /transactions
   # GET /transactions.json
   def index
     @transactions = Transaction.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @transactions }
@@ -14,7 +14,7 @@ class TransactionsController < ApplicationController
   # GET /transactions/1.json
   def show
     @transaction = Transaction.find(params[:id])
-
+    authorize! :read, @transactions 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @transaction }
@@ -39,6 +39,7 @@ class TransactionsController < ApplicationController
   def edit
 
     @transaction = Transaction.find(params[:id])
+
   end
 
   # POST /transactions

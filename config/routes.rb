@@ -1,9 +1,14 @@
 POS::Application.routes.draw do
   
 
+  get "home/index"
+
   devise_for :users do get '/users/sign_out' => 'devise/sessions#destroy' end
-  root :to => "transactions#index"
-  resources :transactions, :customers, :products
+  
+
+  root :to=>"home#index"
+    
+  resources :transactions, :customers, :products, :home
 
 
   # The priority is based upon order of creation:

@@ -16,12 +16,16 @@
     <td><%= customer.birthdate %></td>
     <td><%= customer.gender %></td>
     <td><%= link_to 'Show', customer %></td>
-    <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+    <% if can? :update, @customer %> 
+      <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
+
     <td><%= link_to 'Destroy', customer, confirm: 'Are you sure?', method: :delete %></td>
+     <% end %> 
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Customer', new_customer_path %>
+<%= link_to 'New Customer', new_customer_path %> |
+<%= link_to 'Back to Home', home_index_path %>
